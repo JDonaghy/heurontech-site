@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heuron Technology — John Donaghy</title>
+  <meta name="description" content="Senior technology advisor and fractional CTO for engineering organizations at inflection points. Azure, cloud platform engineering, agentic AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #e8e3db;
+      --surface:    #dfd9d0;
+      --border:     #c9c3b8;
+      --text:       #1a1814;
+      --muted:      #7a7368;
+      --accent:     #2d4a3e;
+      --accent-mid: #4a7a68;
+      --accent-lit: #6ba892;
+      --warm:       #8b6f4e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 2.2rem 0;
+      opacity: 0;
+      animation: fade-in 0.5s ease forwards;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 0 5rem;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fade-in 0.6s 0.1s ease forwards;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 2.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 2rem;
+      max-width: 620px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-body strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #f5f2ed;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.6rem;
+      transition: background 0.2s;
+    }
+    .cta-link:hover { background: var(--accent-mid); }
+
+    /* ── Pull quote ── */
+    .pull-quote {
+      margin: 0;
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fade-in 0.6s 0.25s ease forwards;
+    }
+
+    .pull-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+      line-height: 1.5;
+      color: var(--accent);
+      max-width: 600px;
+      position: relative;
+      padding-left: 1.8rem;
+      border-left: 2px solid var(--accent-lit);
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fade-in 0.6s ease forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.35s; }
+    section:nth-of-type(2) { animation-delay: 0.5s; }
+    section:nth-of-type(3) { animation-delay: 0.65s; }
+    section:nth-of-type(4) { animation-delay: 0.8s; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 1.8rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+
+    p { color: var(--muted); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--text); font-weight: 400; }
+
+    /* ── Situations ── */
+    .situations {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .situation {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 1.2rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .situation-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent-lit);
+      padding-top: 0.2rem;
+    }
+
+    .situation-text {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .situation-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ── Expertise ── */
+    .expertise-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expertise-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .expertise-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    .expertise-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Background ── */
+    .timeline {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--warm);
+      padding-top: 0.2rem;
+    }
+
+    .timeline-content strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-content span {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Writing ── */
+    .writing-item {
+      display: block;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .writing-item:last-child { border-bottom: 1px solid var(--border); }
+    .writing-item:hover { opacity: 0.65; }
+
+    .writing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .writing-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+    }
+
+    /* ── Contact ── */
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--accent-lit);
+      padding-bottom: 0.15rem;
+      margin-top: 1.8rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: var(--text); border-color: var(--text); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 0;
+      opacity: 0;
+      animation: fade-in 0.6s 1s ease forwards;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    /* ── Animation ── */
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 560px) {
+      .expertise-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .timeline-item  { grid-template-columns: 1fr; gap: 0.3rem; }
+      .situation      { grid-template-columns: 1fr; }
+      .situation-num  { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <span class="wordmark">Heuron Technology</span>
+      <a class="nav-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">John Donaghy — Minneapolis, MN</p>
+      <h1><em>Hindsight</em> is everything.</h1>
+      <p class="hero-body">Thirty years of building software and infrastructure, including a few wrong turns. That experience is what I bring to your hardest technical decisions — as a fractional CTO, senior architect, or trusted advisor, <strong>without the overhead of a full-time hire.</strong></p>
+      <a class="cta-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">Get in touch ↗</a>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <div class="container">
+      <blockquote>
+        "I've been the platform engineer who asked developers to learn Helm and ArgoCD before they could ship. It felt reasonable. They didn't use it. Going back to writing application code is what taught me why."
+      </blockquote>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Who I work with</p>
+      <h2>You might be in one of these situations</h2>
+
+      <div class="situations">
+        <div class="situation">
+          <span class="situation-num">01</span>
+          <div class="situation-text">
+            <strong>You're growing faster than your infrastructure</strong>
+            Your deployment story made sense at ten engineers. At thirty, it's becoming a liability. You need someone who knows what breaks first and how to get ahead of it.
+          </div>
+        </div>
+        <div class="situation">
+          <span class="situation-num">02</span>
+          <div class="situation-text">
+            <strong>You have a cloud migration ahead of you</strong>
+            Moving to Azure — or making better use of it — is the right call. The question is what to build, what to buy, and what order to do it in. These decisions are hard to undo.
+          </div>
+        </div>
+        <div class="situation">
+          <span class="situation-num">03</span>
+          <div class="situation-text">
+            <strong>Your platform team is building things developers won't use</strong>
+            This is more common than anyone admits. The tools are technically correct. The adoption is zero. The problem is usually the interface boundary, not the technology.
+          </div>
+        </div>
+        <div class="situation">
+          <span class="situation-num">04</span>
+          <div class="situation-text">
+            <strong>You need a senior technical voice without a full-time hire</strong>
+            Architectural decisions, vendor evaluations, engineering leadership — you need someone who can operate at that level on a fractional basis, through your S-corp or as an advisor.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Capabilities</p>
+      <h2>Where I can help specifically</h2>
+      <p>The work I do is Azure-heavy and platform-engineering-focused, but the judgment is broader than any one stack.</p>
+
+      <div class="expertise-list">
+        <div class="expertise-item">
+          <span class="expertise-name">Azure Platform Eng.</span>
+          <span class="expertise-desc">Container Apps, AKS, Bicep, paved-road deployment patterns, IaC accelerators — building the infrastructure layer that developer teams will actually use.</span>
+        </div>
+        <div class="expertise-item">
+          <span class="expertise-name">Fractional CTO</span>
+          <span class="expertise-desc">Technical strategy, architecture decisions, hiring judgment, vendor evaluation. Senior leadership capacity without the full-time overhead.</span>
+        </div>
+        <div class="expertise-item">
+          <span class="expertise-name">Agentic AI Adoption</span>
+          <span class="expertise-desc">Practical integration of LLM-powered tooling — Claude Code, agentic workflows, what makes sense for your engineering team right now versus what's hype.</span>
+        </div>
+        <div class="expertise-item">
+          <span class="expertise-name">Architecture Review</span>
+          <span class="expertise-desc">Independent assessment before you commit. Cloud architecture, deployment strategy, platform design — the decisions that look small until they aren't.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Background</p>
+      <h2>Thirty years of building things</h2>
+      <p>I've written software, led teams, founded a company, and spent the last several years doing platform engineering at scale in a large enterprise. That range is the point — I've felt the platform from both sides of the interface boundary.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year">2020 – present</span>
+          <div class="timeline-content">
+            <strong>DevSecOps Leader / Senior Solutions Architect — Title Insurance Industry</strong>
+            <span>Building and evangelizing a security-approved DevOps platform on AKS and Azure Container Apps. Architectural guidance, cloud adoption strategy, AI capability evaluation across a large organization.</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2014 – 2019</span>
+          <div class="timeline-content">
+            <strong>Co-Founder &amp; CTO — Axon Financial Systems</strong>
+            <span>Self-funded startup. Responsible for the entire IT operation — platform, products, security, and team. Grew to a successful exit over five years.</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">Earlier</span>
+          <div class="timeline-content">
+            <strong>Twenty-plus years across market data, financial services, healthcare, and enterprise software</strong>
+            <span>From early-stage startups to the New York Stock Exchange — two decades of software development and technical leadership before founding Axon.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Writing</p>
+      <h2>On platform engineering and agentic AI</h2>
+      <p>I write about the things I'm building and the ideas behind them — Azure paved-road platforms, agentic coding workflows, and what it actually takes to build cloud infrastructure that teams use.</p>
+
+      <div style="margin-top: 2rem;">
+        <a class="writing-item" href="https://techne.blog" target="_blank" rel="noopener">
+          <div class="writing-title">Absorb the Platform, Don't Expose It</div>
+          <div class="writing-meta">Azure · Platform Engineering · May 2026</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Get in touch</p>
+      <h2>Let's talk about what you're working on</h2>
+      <p>If you're navigating a platform decision, evaluating a cloud migration, or trying to figure out where AI tooling actually fits in your engineering workflow — I'm available for consulting engagements and fractional CTO work through Heuron Technology LLC.</p>
+      <p>LinkedIn is the best place to start the conversation.</p>
+      <a class="contact-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">↗ Connect on LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-copy">© 2026 Heuron Technology LLC — Minneapolis, MN</span>
+      <span class="footer-copy">John Donaghy</span>
+    </div>
+  </footer>
+
+</body>
+</html>
