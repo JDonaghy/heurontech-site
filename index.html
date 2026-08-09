@@ -160,6 +160,16 @@
       border-left: 2px solid var(--accent-lit);
     }
 
+    .quote-cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1.4rem;
+      padding-left: 1.8rem;
+    }
+
     /* ── Sections ── */
     section {
       padding: 4rem 0;
@@ -383,7 +393,11 @@
   <nav>
     <div class="container">
       <span class="wordmark">Heuron Technology</span>
-      <a class="nav-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <span style="display:flex; gap:1.4rem;">
+        <a class="nav-link" href="/blog/">Writing</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </span>
     </div>
   </nav>
 
@@ -391,8 +405,8 @@
     <div class="container">
       <p class="hero-eyebrow">John Donaghy — Minneapolis, MN</p>
       <h1><em>Hindsight</em> is everything.</h1>
-      <p class="hero-body">Thirty years of building software and infrastructure, including a few wrong turns. That experience is what I bring to your hardest technical decisions — as a fractional CTO, senior architect, or trusted advisor, <strong>without the overhead of a full-time hire.</strong></p>
-      <a class="cta-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">Get in touch ↗</a>
+      <p class="hero-body">Heuron Technology is a senior technical advisory practice built on thirty years of shipping software and infrastructure — including a few wrong turns. We bring that experience to your hardest architectural decisions as a fractional CTO, senior architect, or trusted advisor, <strong>without the overhead of a full-time hire.</strong></p>
+      <a class="cta-link" href="mailto:jdonaghy@heurontech.com">Start a conversation ↗</a>
     </div>
   </div>
 
@@ -401,12 +415,13 @@
       <blockquote>
         "I've been the platform engineer who asked developers to learn Helm and ArgoCD before they could ship. It felt reasonable. They didn't use it. Going back to writing application code is what taught me why."
       </blockquote>
+      <p class="quote-cite">John Donaghy — Founder, Heuron Technology</p>
     </div>
   </div>
 
   <section>
     <div class="container">
-      <p class="section-label">Who I work with</p>
+      <p class="section-label">Who we work with</p>
       <h2>You might be in one of these situations</h2>
 
       <div class="situations">
@@ -445,8 +460,8 @@
   <section>
     <div class="container">
       <p class="section-label">Capabilities</p>
-      <h2>Where I can help specifically</h2>
-      <p>The work I do is Azure-heavy and platform-engineering-focused, but the judgment is broader than any one stack.</p>
+      <h2>Where we help specifically</h2>
+      <p>The work is Azure-heavy and platform-engineering-focused, but the judgment is broader than any one stack. Engagements are scoped to the decision at hand — a review, an architecture, a quarter of fractional leadership — and staffed accordingly.</p>
 
       <div class="expertise-list">
         <div class="expertise-item">
@@ -473,7 +488,7 @@
     <div class="container">
       <p class="section-label">Background</p>
       <h2>Thirty years of building things</h2>
-      <p>I've written software, led teams, founded a company, and spent the last several years doing platform engineering at scale in a large enterprise. That range is the point — I've felt the platform from both sides of the interface boundary.</p>
+      <p>The practice is built on a career spent writing software, leading teams, founding a company, and doing platform engineering at scale inside a large enterprise. That range is the point — we've felt the platform from both sides of the interface boundary.</p>
 
       <div class="timeline">
         <div class="timeline-item">
@@ -505,7 +520,7 @@
     <div class="container">
       <p class="section-label">Writing</p>
       <h2>On platform engineering and agentic AI</h2>
-      <p>I write about the things I'm building and the ideas behind them — Azure paved-road platforms, agentic coding workflows, and what it actually takes to build cloud infrastructure that teams use.</p>
+      <p>We publish what we're building and the reasoning behind it — Azure paved-road platforms, agentic coding workflows, and what it actually takes to build cloud infrastructure that teams use. Written in the first person, because the lessons were.</p>
 
       <div style="margin-top: 2rem;">
         <a class="writing-item" href="/blog/the-part-that-can-say-no/">
@@ -521,13 +536,14 @@
     </div>
   </section>
 
-  <section>
+  <section id="contact">
     <div class="container">
       <p class="section-label">Get in touch</p>
       <h2>Let's talk about what you're working on</h2>
-      <p>If you're navigating a platform decision, evaluating a cloud migration, or trying to figure out where AI tooling actually fits in your engineering workflow — I'm available for consulting engagements and fractional CTO work through Heuron Technology LLC.</p>
-      <p>LinkedIn is the best place to start the conversation.</p>
-      <a class="contact-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">↗ Connect on LinkedIn</a>
+      <p>If you're navigating a platform decision, evaluating a cloud migration, or working out where AI tooling actually fits in your engineering workflow — Heuron Technology LLC takes consulting engagements, architecture reviews, and fractional CTO work.</p>
+      <p>Email is the fastest way to reach us. Enquiries go straight to John.</p>
+      <a class="contact-link" href="mailto:jdonaghy@heurontech.com">↗ jdonaghy@heurontech.com</a>
+      <p style="margin-top: 1.4rem; font-size: 0.9rem;">Or <a href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-lit);">connect on LinkedIn</a>.</p>
     </div>
   </section>
 
