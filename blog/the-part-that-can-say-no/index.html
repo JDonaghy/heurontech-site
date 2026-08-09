@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Part That Can Say No — verification and enforced gates for AI coding agents</title>
+  <meta name="description" content="Four failures from twelve weeks running a fleet of AI coding agents, and why verifying agent-written code takes enforced gates and tests the agent cannot author — not a better dashboard." />
+  <link rel="canonical" href="https://heurontech.com/blog/the-part-that-can-say-no/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Heuron Technology" />
+  <meta property="og:title" content="The Part That Can Say No" />
+  <meta property="og:description" content="Agent tooling is converging on a dashboard. The hard problem is one layer down — verifying work you didn't watch being done." />
+  <meta property="og:url" content="https://heurontech.com/blog/the-part-that-can-say-no/" />
+  <meta property="og:image" content="https://heurontech.com/assets/og/say-no.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-08-09" />
+  <meta property="article:author" content="John Donaghy" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Part That Can Say No" />
+  <meta name="twitter:description" content="Agent tooling is converging on a dashboard. The hard problem is one layer down." />
+  <meta name="twitter:image" content="https://heurontech.com/assets/og/say-no.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:ital,wght@0,300;0,400;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Part That Can Say No",
+    "description": "Four failures from twelve weeks running a fleet of AI coding agents, and why verifying agent-written code takes enforced gates and tests the agent cannot author.",
+    "datePublished": "2026-08-09",
+    "author": { "@type": "Person", "name": "John Donaghy", "url": "https://heurontech.com/" },
+    "publisher": { "@type": "Organization", "name": "Heuron Technology LLC" },
+    "mainEntityOfPage": "https://heurontech.com/blog/the-part-that-can-say-no/"
+  }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a class="wordmark" href="/">Heuron Technology</a>
+      <div class="nav-links">
+        <a class="nav-link" href="/blog/">Writing</a>
+        <a class="nav-link" href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="article-head">
+    <div class="container">
+      <p class="eyebrow">Agentic AI · Platform Engineering</p>
+      <h1>The Part That Can Say No</h1>
+      <p class="standfirst">Agent tooling is converging on a dashboard. The hard problem is one layer down.</p>
+      <p class="byline">John Donaghy — 9 August 2026</p>
+    </div>
+  </div>
+
+  <article>
+    <div class="container">
+
+      <section>
+        <h2>How I got here</h2>
+        <p>I didn't set out to build continuous integration for robots. I set out to build a text editor.</p>
+        <p>That became <a href="https://vimcode.org" target="_blank" rel="noopener">VimCode</a> — a modal editor in Rust, now around 137,000 lines with 5,501 tests and four rendering backends. Underneath it sits quadraui, a primitive library that rasterises one declarative widget tree through ratatui in a terminal and GTK4 in a window. Both were written overwhelmingly by agents, with me directing rather than typing.</p>
+        <p>They worked. That was the problem.</p>
+        <p>At that volume the code began to rot in a way I recognised but hadn't expected to meet so early: near-duplicate functions that had drifted apart, god-files nobody decomposed, two subsystems solving one problem in two idioms, a test suite growing alongside the code without ever quite constraining it. No single catastrophe — just accumulation, faster than I could read it.</p>
+        <p>The fix wasn't a better prompt. It was discipline I already knew: agree the interface before implementing it, keep changes small enough to review, never let anything land without something independent checking it. Old, boring software engineering, some of it faintly waterfall — which I had been taught to sneer at.</p>
+        <p>What surprised me wasn't that those practices still worked. It was that their <strong>reasons had been replaced.</strong></p>
+        <p>Code review existed partly because humans make different mistakes, and a second pair of eyes catches what the first missed. Specs before implementation existed because changing a decision late was expensive. Neither rationale survives contact with an agent that will cheerfully rewrite a module six times before lunch and hold no opinion about the fifth version.</p>
+        <p>The practices survive anyway, for a different reason: <strong>they are the only way to check work you did not watch being done.</strong> A contract agreed before implementation isn't insurance against costly rework — it's what gives a test author, independent of the implementer, something to write against. Small changes aren't about reviewer stamina — they're the unit at which an automated gate can plausibly refuse.</p>
+        <p>The methods came back. The justifications got swapped out underneath them.</p>
+        <p>Then I pointed the same fleet at itself, and found out how much of that I had gotten wrong.</p>
+      </section>
+
+      <section>
+        <h2>Four things that went wrong</h2>
+        <p>A word on the machinery first, or none of this will land. Work arrives as GitHub issues. A coordinator assigns one to a machine, where an agent session — a <em>worker</em> — does the coding in its own git worktree and pushes a branch. The issue then moves along a pipeline: Work, then Test, then Review, then Merge, each stage a fresh agent session on whatever machine suits it. None of it is interactive. While it runs I am asleep, or heads-down on something else — which is the entire point, and also what makes every failure below possible.</p>
+
+        <div class="note">
+          <p class="note-tag">The pipeline had no clock</p>
+          <p>The pipeline moves on events: a worker finishes, so dispatch a review; a review approves, so enqueue a merge. Every transition was triggered by something <strong>happening</strong>. Nothing was triggered by something failing to happen.</p>
+          <p>That works until a reaction fires slightly too early. A review completes, and the pipeline checks whether the work can advance — but the test verdict that would have unblocked it lands a second later, after the one-shot check has already run and moved on. Now nothing is scheduled to look again. The row sits there in a state that is individually valid at every stage and collectively stuck.</p>
+          <p>I lost forty-seven minutes to exactly that once, and for weeks beforehand I was fixing what looked like unrelated pipeline bugs. The tell was that every fix worked, and the next stall always looked new.</p>
+        </div>
+
+        <div class="note">
+          <p class="note-tag">Self-reported liveness missed the exact failure it existed to catch</p>
+          <p>Workers print progress markers as they go — a <code>STATUS:</code> line when something advances, a <code>STUCK:</code> line when they hit a wall — and the coordinator parses them out of the log. It's a useful signal and it costs nothing. It is also the agent's own account of itself.</p>
+          <p>The failure that cost me real money was a worker that never printed a <code>STUCK:</code> line at all. It worked plausibly, and continuously, and in circles, until its two-hour budget ran out. Nothing in the log looked wrong. There was simply no result at the end of it.</p>
+          <p>The fix I could afford was a clock: flag anything still running past a wall-clock threshold. A clock is at least independent of the worker. It also cannot tell productive from productive-looking — it can only tell you how long the indistinguishable thing has been going on.</p>
+        </div>
+
+        <div class="note">
+          <p class="note-tag">Merged is not live</p>
+          <p>The system runs in four places at once: a Python package installed on every worker machine, a daemon on the always-on host, a terminal UI compiled locally, and a separate pinned copy of the CLI that the overnight scheduler drives from. A change merged to the repository is live in none of them until each is updated its own way — and every one of those lanes fails <strong>silently</strong>. A half-installed machine is indistinguishable from a working one until it does something wrong.</p>
+          <p>That pinned scheduler CLI was once three releases behind. For days it drove work overnight without fixes I was certain were deployed, and nothing anywhere reported a problem, because from the outside it was doing its job.</p>
+        </div>
+
+        <div class="note">
+          <p class="note-tag">The sealed test suite that no gate ever ran</p>
+          <p>I built an acceptance suite the coding agent couldn't edit — the whole point being that its verdict wouldn't depend on the agent's account of itself. An independent agent writes it; the worker only gets to run it.</p>
+          <p>Then I wired it to nothing. It wasn't in a CI job. It wasn't in the pipeline stage that runs tests. It existed, it was trustworthy, and no automatic gate ever invoked it — so one milestone's suite sat red for weeks with nobody noticing. Including me. Author of the machine whose entire purpose is noticing.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>What they have in common</h2>
+        <p>Each one is the system holding a belief that nothing had checked.</p>
+        <p>Not a wrong belief arrived at by faulty reasoning — an <strong>unexamined</strong> one. The work was progressing because no one had asked. The fix was deployed because it had merged. The suite was passing because it had passed the last time anyone looked. In each case the belief was load-bearing, confidently displayed, and attached to no mechanism that could have contradicted it.</p>
+        <p>That shape is not specific to my system. It is the industry's default posture toward AI-written code, and it usually appears in one particular form: <strong>asking the thing that wrote the code whether the code is good.</strong></p>
+        <p>It rarely looks that stark. It looks like an agent summarizing its own diff. A second model grading the first model's output. A test suite the agent wrote, ran, and reported on. A green check that is green because the agent said so. Different mechanisms, one shape — the evidence is produced by the party being evaluated.</p>
+        <p>At one agent and one task this is fine, because <strong>you</strong> are the check. You read the diff. The self-report is a convenience, not a control. It stops being fine when there is more work in flight than you can personally read, which arrives sooner than most people expect. For me it was about four machines.</p>
+      </section>
+
+      <section>
+        <h2>Everyone is building the same dashboard</h2>
+        <p>The tools nearest to this all converged on one surface: a board of running sessions, worktree isolation, a diff viewer, a phone client. Paseo shipped it across five agent CLIs and took thirteen thousand GitHub stars in two weeks. OpenChamber shipped it around one agent with a genuinely good idea — a branchable session graph, so a wrong turn is forked from rather than restarted. Devin Desktop shipped it as a Kanban board with real money behind it. They are good products.</p>
+        <p>When independent teams land on the same design they have found the same problem, and the problem they found is <strong>watching</strong>. Agents working unsupervised is uncomfortable, and a board answers the question that discomfort asks: what is my agent doing right now?</p>
+        <p>That's a real question. It just isn't the expensive one. The expensive question arrives after the agent stops — do I keep this? — and every one of those tools ends at that boundary. The agent finishes, you get a diff and a button.</p>
+        <p>That's coherent while a human is in the chair. But once the work outruns the chair, the button is the bottleneck, and attention degrades quietly rather than loudly. You skim. You trust a summary. You merge because the agent sounded confident and it's eleven at night. The failure mode isn't approving something bad — it's that <strong>you stop being a check while continuing to believe you are one.</strong></p>
+      </section>
+
+      <section>
+        <h2>A gate is a thing that refuses</h2>
+        <p>Which leaves one option: make the system itself capable of refusal. And a status chip reading "Waiting for CI" is not that. It's a label. The difference is whether the system can say no when you want it to say yes.</p>
+        <blockquote>A gate you can silently skip is a label. A gate you can <em>loudly</em> skip is a gate.</blockquote>
+        <p><span class="kicker">Order has to be enforced, not drawn.</span> My pipeline runs Work → Test → Review → Merge. It isn't enough for the interface to show them in that order; the code that dispatches a review has to refuse until a test verdict exists, or the order is a diagram and reviewers burn expensive cycles on untested code.</p>
+        <p><span class="kicker">Bypass has to be loud.</span> There is a force-merge flag, and there has to be — I would rather have an override I can grep for than a gate people quietly learn to route around. It takes a flag, it's recorded, and it surfaces everywhere merge status is read.</p>
+        <p><span class="kicker">Ambiguity has to fail closed.</span> A pull request with zero reported CI checks is not one that passed. "No CI configured" and "CI exists but never fired" look identical from outside and mean opposite things. The gate now asks whether checks were <em>expected</em>, and blocks with its own reason when they were expected and absent.</p>
+        <p>None of this is clever. It's the residue of merging things I shouldn't have.</p>
+      </section>
+
+      <section>
+        <h2>An artifact the worker cannot author</h2>
+        <p>Enforced order buys sequencing. It doesn't touch the self-report problem, because a test stage that runs the agent's own tests is still asking the agent whether the agent did well.</p>
+        <p>The construction I've landed on: an independent agent writes the acceptance tests from a contract agreed <em>before</em> implementation starts. The worker gets them read-only — it can run them and iterate against them until they pass, and it cannot edit them. When it claims to be done, the coordinator re-runs the sealed suite externally, against the pushed commit, with no shared context.</p>
+        <p>The point isn't that this catches more bugs, though it does. It's what a green result <strong>means</strong>. "The agent says it works" and "an artifact the agent didn't write, run by a process it doesn't control, says it works" are different kinds of object, and only one survives the agent being wrong about itself.</p>
+        <p>On maturity, precisely: the first end-to-end green run happened this month, on one repository, one issue — about five dollars and two sessions. Not a solved thing. But it's the only construction I've found that doesn't eventually reduce to trusting the worker. And as the fourth failure above shows, building the trustworthy artifact and wiring it to a decision are two different projects, only one of which is fun.</p>
+      </section>
+
+      <section>
+        <h2>What will matter</h2>
+        <p>The interface layer is converging, which is what layers do shortly before they commoditize. Session management, worktree isolation, a board, a phone client — table stakes, then free. Which agent wrote the code will end up mattering about as much as which editor a human used.</p>
+        <p>What won't commoditize is the answer to a different question: <strong>what had to be true before this merged?</strong></p>
+        <p>That's a property of the system around the agent, not of the agent. It's where the work is, it's mostly unbuilt, and — usefully, for anyone deciding where to spend a year — it is not where the well-funded teams are pointed.</p>
+        <p>Build the part that can say no.</p>
+      </section>
+
+      <div class="authorbox">
+        <p class="ab-name">John Donaghy</p>
+        <p class="ab-body">I build <a href="https://vimcode.org" target="_blank" rel="noopener">VimCode</a> — a modal editor in Rust, 137K lines, written largely by agents — and the coordinator described above, which runs several repositories across a fleet of machines. I do platform engineering, fractional CTO and architecture work through Heuron Technology LLC.</p>
+        <p class="ab-body"><strong>If you're running coding agents at volume and hitting these same walls, I'd like to compare notes.</strong> The failure modes above took months to name, and I doubt any of them are unique to me. I'm also available for consulting where this is the problem.</p>
+        <p class="ab-links">
+          <a href="mailto:jdonaghy@heurontech.com">jdonaghy@heurontech.com</a>
+          <a href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">linkedin.com/in/johnfdonaghy</a>
+          <a href="https://github.com/JDonaghy" target="_blank" rel="noopener">github.com/JDonaghy</a>
+        </p>
+      </div>
+
+      <p class="colophon">Written from twelve weeks of running a multi-machine agent fleet — first commit 17 May 2026, 1,549 commits since, several repositories, heterogeneous hardware, one operator. Tools surveyed August 2026; their feature sets move quickly, so treat the specifics as dated and the argument as not.</p>
+
+    </div>
+  </article>
+
+  <footer>
+    <div class="container">
+      <span class="footer-copy">© 2026 Heuron Technology LLC — Minneapolis, MN</span>
+      <span class="footer-copy"><a href="/blog/">More writing</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

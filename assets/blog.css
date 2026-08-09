@@ -1,0 +1,208 @@
+/* Heuron Technology — shared styles for /blog
+   Design system mirrors index.html: sand ground, forest accent,
+   Playfair Display / Instrument Sans / JetBrains Mono. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #e8e3db;
+  --surface:    #dfd9d0;
+  --border:     #c9c3b8;
+  --text:       #1a1814;
+  --muted:      #7a7368;
+  --accent:     #2d4a3e;
+  --accent-mid: #4a7a68;
+  --accent-lit: #6ba892;
+  --warm:       #8b6f4e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── Nav (matches homepage) ── */
+nav { padding: 2.2rem 0; }
+nav .container {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.wordmark {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 300; font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 1.4rem; }
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-link:hover { color: var(--text); }
+
+/* ── Article header ── */
+.article-head {
+  padding: 4rem 0 2.6rem;
+  border-top: 1px solid var(--border);
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent-mid); margin-bottom: 2rem;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.3rem, 5.2vw, 3.3rem);
+  font-weight: 400; line-height: 1.14; letter-spacing: -0.015em;
+  color: var(--text); margin-bottom: 1.6rem;
+}
+.standfirst {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.28rem; line-height: 1.5;
+  color: var(--accent); max-width: 34ch;
+  margin-bottom: 2rem;
+}
+.byline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 1rem; border-top: 1px solid var(--border);
+}
+
+/* ── Article body ── */
+article { padding-bottom: 1rem; }
+article section { padding: 2.8rem 0 0; }
+article h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.62rem; font-weight: 400; line-height: 1.25;
+  color: var(--text); margin-bottom: 1.2rem;
+}
+article p { color: var(--muted); margin-bottom: 1.15rem; }
+article p:last-child { margin-bottom: 0; }
+article strong { color: var(--text); font-weight: 400; }
+article em { font-style: italic; }
+article a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-lit); }
+article a:hover { color: var(--text); border-color: var(--text); }
+
+article code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.08em 0.34em;
+  border-radius: 2px;
+  color: var(--text);
+}
+
+/* ── Pull quote (matches homepage treatment) ── */
+article blockquote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+  line-height: 1.5;
+  color: var(--accent);
+  max-width: 600px;
+  padding-left: 1.8rem;
+  border-left: 2px solid var(--accent-lit);
+  margin: 2rem 0;
+}
+
+/* ── Field notes ── */
+.note {
+  padding: 1.6rem 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 1.6rem;
+}
+.note-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--accent-mid); margin-bottom: 0.9rem;
+}
+.note p { font-size: 0.97rem; line-height: 1.75; }
+
+.kicker { color: var(--text); font-weight: 400; }
+
+hr.brk { border: 0; height: 1px; background: var(--border); margin: 3rem 0 0; }
+
+/* ── Author box ── */
+.authorbox {
+  margin-top: 3.5rem;
+  padding: 2rem 2rem 1.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+}
+.ab-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.authorbox p.ab-body {
+  font-size: 0.95rem; line-height: 1.7; color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+.authorbox p.ab-body strong { color: var(--text); font-weight: 400; }
+.authorbox a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-lit); }
+.authorbox a:hover { color: var(--text); border-color: var(--text); }
+.ab-links {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--muted);
+  padding-top: 0.9rem; border-top: 1px solid var(--border);
+  margin-top: 0.4rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1rem;
+}
+
+.colophon {
+  margin-top: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; line-height: 1.7; color: var(--muted);
+  padding-top: 1.4rem; border-top: 1px solid var(--border);
+}
+
+/* ── Index listing ── */
+.writing-item {
+  display: block; padding: 1.6rem 0;
+  border-top: 1px solid var(--border);
+  text-decoration: none; transition: opacity 0.2s;
+}
+.writing-item:last-of-type { border-bottom: 1px solid var(--border); }
+.writing-item:hover { opacity: 0.65; }
+.writing-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; color: var(--text); margin-bottom: 0.35rem; line-height: 1.3;
+}
+.writing-dek { font-size: 0.93rem; color: var(--muted); margin-bottom: 0.5rem; line-height: 1.6; }
+.writing-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-mid);
+}
+
+/* ── Footer ── */
+footer { padding: 3rem 0 2.5rem; margin-top: 2rem; }
+footer .container {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  border-top: 1px solid var(--border); padding-top: 1.6rem;
+}
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.06em; color: var(--muted);
+}
+.footer-copy a { color: var(--muted); text-decoration: none; }
+.footer-copy a:hover { color: var(--text); }
+
+@media (max-width: 560px) {
+  body { font-size: 18px; }
+  .authorbox { padding: 1.5rem 1.4rem; }
+}

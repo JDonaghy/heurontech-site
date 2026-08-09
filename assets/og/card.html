@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>OG card template — Heuron</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:ital,wght@0,300;0,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #6f7168; padding: 30px; font-family: 'JetBrains Mono', monospace; }
+
+    .hint {
+      max-width: 1200px; background: #fff; border-radius: 4px; padding: 18px 22px;
+      font-size: 13px; line-height: 1.6; color: #2b2f35; margin-bottom: 30px;
+    }
+    .cap {
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: #fff; margin: 0 0 9px;
+    }
+    .rail { overflow-x: auto; }
+    .stack { display: flex; flex-direction: column; gap: 34px; width: 1200px; }
+
+    /* the asset: exactly 1200 × 630 */
+    .card {
+      width: 1200px; height: 630px; flex: none;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 78px 84px 70px 94px;
+      position: relative; overflow: hidden;
+    }
+    .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px; }
+
+    .card .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px; letter-spacing: .22em; text-transform: uppercase;
+    }
+    .card h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 98px; font-weight: 400; line-height: 1.02;
+      letter-spacing: -0.022em; max-width: 15.5ch;
+    }
+    .card .stand {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 32px; line-height: 1.36;
+      margin-top: 26px; max-width: 26ch;
+    }
+    .card .foot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 21px; letter-spacing: .05em;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .card .foot .bar { width: 46px; height: 3px; flex: none; }
+    .mid { display: flex; flex-direction: column; }
+
+    /* forest — inverted brand, holds its edge in a white feed */
+    .card.forest { background: #243c33; color: #eae5dd; }
+    .card.forest::before { background: #6ba892; }
+    .card.forest .eyebrow { color: #6ba892; }
+    .card.forest .stand   { color: #b6c6bd; }
+    .card.forest .foot    { color: #8fa39a; }
+    .card.forest .foot .bar { background: #6ba892; }
+
+    /* sand — matches the site exactly */
+    .card.sand { background: #e8e3db; color: #1a1814; }
+    .card.sand::before { background: #2d4a3e; }
+    .card.sand .eyebrow { color: #4a7a68; }
+    .card.sand .stand   { color: #2d4a3e; }
+    .card.sand .foot    { color: #7a7368; }
+    .card.sand .foot .bar { background: #2d4a3e; }
+  </style>
+</head>
+<body>
+
+  <div class="hint">
+    <p><b>OpenGraph card template — two variants, each exactly 1200 × 630px.</b> Screenshot one, crop to its edges, save as <code>/assets/og/say-no.png</code>. Edit the title and standfirst here to make a card for the next post.</p>
+    <p style="margin-top:8px"><b>Use the forest one.</b> LinkedIn's feed is near-white, so the sand card — which matches the site exactly — loses its edges and reads as page chrome. Inverting to the deep green keeps it on-brand and gives it a boundary.</p>
+  </div>
+
+  <div class="rail">
+    <div class="stack">
+
+      <div>
+        <p class="cap">Variant A — forest · recommended for feeds</p>
+        <div class="card forest">
+          <p class="eyebrow">Heuron Technology</p>
+          <div class="mid">
+            <h1>The Part That Can Say No</h1>
+            <p class="stand">Agent tooling is converging on a dashboard. The hard problem is one layer down.</p>
+          </div>
+          <p class="foot"><span class="bar"></span> John Donaghy &nbsp;·&nbsp; heurontech.com</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="cap">Variant B — sand · matches the site</p>
+        <div class="card sand">
+          <p class="eyebrow">Heuron Technology</p>
+          <div class="mid">
+            <h1>The Part That Can Say No</h1>
+            <p class="stand">Agent tooling is converging on a dashboard. The hard problem is one layer down.</p>
+          </div>
+          <p class="foot"><span class="bar"></span> John Donaghy &nbsp;·&nbsp; heurontech.com</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
