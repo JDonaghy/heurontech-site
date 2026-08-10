@@ -4,20 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>The Missing Rung: A Paved Road Pattern for Azure Container Apps</title>
+  <title>The Missing Rung — A Paved-Road Pattern for Azure Container Apps</title>
   <meta name="description" content="Azure Container Apps is the rung missing from the container adoption ladder. A paved road's job is to absorb the complexity of the underlying platform, not expose it — and here is the deployment pattern that does it." />
+  <meta name="keywords" content="azure, platform-engineering, azure-container-apps, bicep, paved-roads, devops, infrastructure-as-code" />
 
-  <!-- Published first on Techne; canonical points there so the two copies don't compete. -->
+  <!-- Published first on Techne, 8 May 2026. Canonical points there so the two copies don't compete. -->
   <link rel="canonical" href="https://techne.blog/john-donaghy/the-missing-rung-a-paved-road-pattern-for-azure-container-apps" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Heuron Technology" />
-  <meta property="og:title" content="The Missing Rung: A Paved Road Pattern for Azure Container Apps" />
+  <meta property="og:title" content="The Missing Rung — A Paved-Road Pattern for Azure Container Apps" />
   <meta property="og:description" content="A paved road's job is to absorb the complexity of the underlying platform, not expose it. If developers have to understand Bicep to ship a container, you've built a paved shoulder." />
   <meta property="og:url" content="https://heurontech.com/blog/the-missing-rung/" />
+  <meta property="article:published_time" content="2026-05-08" />
+  <meta property="article:author" content="John Donaghy" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Missing Rung: A Paved Road Pattern for Azure Container Apps" />
+  <meta name="twitter:title" content="The Missing Rung — A Paved-Road Pattern for Azure Container Apps" />
   <meta name="twitter:description" content="A paved road's job is to absorb the complexity of the underlying platform, not expose it." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,8 +44,8 @@
     <div class="container">
       <p class="eyebrow">Azure · Platform Engineering</p>
       <h1>The Missing Rung</h1>
-      <p class="standfirst">A design principle for Azure paved-road platforms — and the deployment pattern that puts it into practice.</p>
-      <p class="byline">John Donaghy — May 2026 · First published on Techne</p>
+      <p class="standfirst">A Paved-Road Pattern for Azure Container Apps</p>
+      <p class="byline">John Donaghy — 8 May 2026 · First published on Techne</p>
     </div>
   </div>
 
@@ -50,32 +53,27 @@
     <div class="container">
 
       <section>
-        <p>Every container adoption story I've been part of follows roughly the same arc.</p>
-        <p>It starts with bare VMs. Then Docker arrives, and the team gets excited. Then Docker Compose shows up and suddenly local development feels almost civilized. The team can define a multi-service stack in a single file, run it with one command, and onboard a new developer in an afternoon instead of a week.</p>
-        <p>And then someone says: "Great. Now let's do this in production. We should probably look at Kubernetes."</p>
-        <p>And the room goes quiet.</p>
-        <p>The Kubernetes conversation doesn't stall because the team is incapable. It stalls because the complexity tax is real, and the team — correctly — is doing a cost-benefit analysis in real time. Helm charts, cluster management, networking primitives, RBAC, persistent volume claims, operators, custom resource definitions. For a team that just wants to run a handful of containerized APIs and a couple of background workers, this is not a trade they want to make.</p>
-        <p>So they stay on Docker Compose. Maybe on a VM. Or they got as far as App Services and quietly stopped there. Or, worse still, the word gets out that cloud is hard — and expensive — and suddenly everyone wants to go back to the data center.</p>
+        <p>There's a container adoption ladder that plays out the same way in almost every enterprise I've worked with over the last several years.</p>
+        <p>Development teams get interested in Docker, and then get excited when they discover Docker Compose. Suddenly local development feels almost civilized. The team can define a multi-service stack in a single file, run it with one command, and onboard a new developer in an afternoon instead of a week.</p>
+        <p>And then someone says: "Great. Now let's do this in production. We should probably look at Kubernetes." And the room goes quiet because nobody has the bandwidth to think about it.</p>
+        <p>The Kubernetes conversation doesn't stall because the team is incapable. It stalls because the complexity tax is real, and the team — correctly — is doing a cost-benefit analysis in real time. Helm charts, RBAC, persistent volume claims, operators, custom resource definitions. For a team that just wants to run a handful of containerized APIs and a couple of background workers, this is not a trade they want to make.</p>
+        <p>So they stay on Docker Compose running on a VM, and the path to something better never gets shorter. Worse, I've seen teams delay cloud migration entirely — not because the business case is weak, but because nobody has the bandwidth to design the landing zone. The business doesn't care where it runs, so it doesn't run anywhere new.</p>
       </section>
 
       <section>
         <h2>The Missing Rung</h2>
         <p>The problem isn't the team's ambition or capability. The problem is that the ladder has a missing rung.</p>
-        <p>What these teams actually need — run my container, give it secrets, scale it when traffic spikes, expose it behind a proper ingress — has a name now: <strong>Azure Container Apps</strong> (with Cloud Run on GCP and App Runner on AWS offering similar capabilities). The rest of this post is Azure-specific, but the principle applies regardless of cloud.</p>
-        <p>The managed, opinionated orchestration layer that sits between "I have a container" and "I need a full Kubernetes cluster." You get environment isolation, managed ingress, autoscaling, native Key Vault integration, managed identity, Dapr support, and a sensible networking model. You do not get, or need to understand, pod scheduling, cluster autoscalers, or CNI plugins.</p>
+        <p>What these teams actually need — run my container, give it secrets, scale it when traffic spikes, expose it behind a proper ingress — has a name now: <strong>Azure Container Apps</strong>. It's the managed, opinionated orchestration layer that sits between "I have a container" and "I need a full Kubernetes cluster." You get environment isolation, managed ingress, autoscaling, native Key Vault integration, managed identity, and a sensible networking model. You do not get, or need to understand, pod scheduling, cluster autoscalers, or CNI plugins.</p>
         <p>Container Apps is the rung that was missing. The reason most enterprise teams aren't standing on it isn't the platform. The platform is good. The reason is that Container Apps, like most Azure primitives, doesn't come with a deployment story. It comes with a portal, an ARM API, and the implication that you'll figure the rest out.</p>
         <p>Most teams don't figure the rest out. They write one-off deployment scripts. They click through the portal during the first setup and then forget how they did it. They handle secrets inconsistently across services. They accumulate tribal knowledge that lives in one person's head until that person leaves. The platform exists; the road does not.</p>
       </section>
 
       <section>
         <h2>A Paved Road's Only Job</h2>
-        <p>Here's the design principle I keep coming back to, earned across several years of platform engineering work:</p>
+        <p>Here's the design principle I keep coming back to, earned across a lot of platform engineering work:</p>
 
         <p class="principle">A paved road's job is to absorb the complexity of the underlying platform, not expose it.</p>
 
-        <p>I know this failure mode from the inside. Earlier in my career I was the platform engineer asking developers to learn Helm charts and ArgoCD before they could ship. It felt reasonable at the time — these are powerful tools, the right tools, and surely developers could invest a few days to understand them. They didn't. Or they did, barely, and then forgot, and then needed help again six months later when something broke.</p>
-        <p>It wasn't until I went back to writing application code that I understood why. When your job is to ship features, every hour spent on deployment infrastructure is an hour stolen from the thing you were hired to do. The cognitive overhead isn't just inconvenient — it's a context switch that breaks flow and breeds resentment. Platform teams that don't feel that cost firsthand tend to keep raising it.</p>
-        <p>That experience is what sent me looking for a better boundary.</p>
         <p>If developers have to understand Bicep to ship a container to your platform, you have not built a paved road. You have built a paved shoulder — technically present, practically unused. Developers will route around it. They'll go back to the deployment script they already understand. They'll stay on Docker Compose.</p>
         <p>The right developer interface for deploying a containerized workload is a file that describes the thing they want. Not a file that describes how Azure should be configured to produce the thing they want. The translation from intent to configuration is the platform team's problem. Absorbing that complexity is the whole point.</p>
       </section>
@@ -114,7 +112,7 @@ resources:
   memory: 1Gi</code></pre>
 
         <p>That's it. That's the entire deployment definition. The developer knows what image they're deploying, what secrets it needs (by reference — the value never appears in the file), how it should scale, and whether it has an ingress. They do not know what a Bicep template looks like. They do not need to.</p>
-        <p>At pipeline stage, a lightweight transformer reads this YAML and generates a Bicep parameters file on the fly:</p>
+        <p>At pipeline stage, a lightweight transformer reads this YAML and generates a Bicep parameters file. The translation is mechanical — there's nothing clever happening here, and that's the point:</p>
 
 <pre><code>{
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
@@ -126,18 +124,7 @@ resources:
     "externalIngress": { "value": false },
     "minReplicas": { "value": 1 },
     "maxReplicas": { "value": 10 },
-    "secrets": {
-      "value": [
-        {
-          "name": "database-connection-string",
-          "keyVaultUri": "https://myvault.vault.azure.net/secrets/order-processor-db-conn"
-        },
-        {
-          "name": "service-bus-connection",
-          "keyVaultUri": "https://myvault.vault.azure.net/secrets/service-bus-conn"
-        }
-      ]
-    },
+    "secrets": { "value": [ /* Key Vault references, unchanged */ ] },
     "cpu": { "value": "0.5" },
     "memory": { "value": "1Gi" }
   }
@@ -164,8 +151,8 @@ resources:
 
       <div class="authorbox">
         <p class="ab-name">John Donaghy</p>
-        <p class="ab-body">I'm building an open-source accelerator that implements this pattern for Azure Container Apps, with GitHub Actions pipelines and Bicep as the deployment engine. I'll share it when it's ready.</p>
-        <p class="ab-body"><strong>If these ideas resonate and you want to talk through how they'd apply in your environment</strong> — Heuron Technology LLC takes consulting engagements, architecture reviews, and fractional CTO work.</p>
+        <p class="ab-body">I'm building an open-source accelerator that implements this pattern — Azure Container Apps, Bicep, GitHub Actions — and I'll share it when it's ready.</p>
+        <p class="ab-body"><strong>If this resonates and you'd like to talk through how it applies in your environment</strong> — Heuron Technology LLC takes consulting engagements, architecture reviews, and fractional CTO work.</p>
         <p class="ab-links">
           <a href="mailto:jdonaghy@heurontech.com">jdonaghy@heurontech.com</a>
           <a href="https://www.linkedin.com/in/johnfdonaghy/" target="_blank" rel="noopener">linkedin.com/in/johnfdonaghy</a>
@@ -173,7 +160,7 @@ resources:
         </p>
       </div>
 
-      <p class="colophon">First published on Techne in May 2026 as “The Missing Rung: A Paved Road Pattern for Azure Container Apps.” This copy is hosted here for the archive; the canonical version remains on Techne.</p>
+      <p class="colophon">First published on Techne, 8 May 2026, as “The Missing Rung — A Paved-Road Pattern for Azure Container Apps.” This copy is hosted here for the archive; the canonical version remains on Techne. Text matches the published article.</p>
 
     </div>
   </article>
