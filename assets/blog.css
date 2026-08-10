@@ -104,6 +104,40 @@ article code {
   color: var(--text);
 }
 
+/* ── Code blocks ── */
+article pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent-lit);
+  padding: 1.2rem 1.3rem;
+  margin: 1.6rem 0;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+article pre code {
+  background: none; border: 0; padding: 0; font-size: inherit; color: inherit;
+}
+article .caption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-mid); margin: -0.9rem 0 1.6rem;
+}
+
+/* ── Principle callout ── */
+.principle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; line-height: 1.45; font-style: italic;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  padding: 1.5rem 1.7rem;
+  margin: 1.8rem 0;
+}
+
 /* ── Pull quote (matches homepage treatment) ── */
 article blockquote {
   font-family: 'Playfair Display', serif;
