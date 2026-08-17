@@ -79,11 +79,13 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
 
 /* who it's for strip */
 .strip{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  padding:20px 0;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);
-  display:flex;gap:10px 32px;flex-wrap:wrap;align-items:center;}
-.strip b{color:var(--ink);font-weight:600;}
-.strip span+span::before{content:"\2022";color:var(--ochre);margin-right:30px;}
+  padding:20px 0;text-align:center;}
+.strip__label{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);margin:0 0 10px;}
+.strip__list{display:flex;justify-content:center;gap:10px 32px;flex-wrap:wrap;
+  font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);}
+.strip__list span+span::before{content:"\2022";color:var(--ochre);margin-right:30px;}
 
 /* sections */
 .sec{border-top:1px solid var(--rule);padding-block:clamp(46px,6.5vw,84px);}
@@ -221,7 +223,7 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
   .line{grid-template-columns:1fr;}
   .line__fig{grid-row:auto;grid-column:1;margin-top:7px;}
   .navlinks{gap:18px;}
-  .strip{font-size:11px;gap:8px 20px;}
+  .strip__list{font-size:11px;gap:8px 20px;}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 </style>
@@ -244,7 +246,7 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
   <!-- HERO -->
   <section class="hero wrap">
     <p class="eyebrow">Minneapolis, Minnesota</p>
-    <h1>Is your firm running on a system nobody ever actually <em>designed</em>?</h1>
+    <h1>Let us <em>design</em> the system that fits your firm.</h1>
     <hr class="dbl">
     <p class="lede">Is there a spreadsheet three departments now depend on? A monthly subscription that still leaves a third of the work happening in email? A process that runs because one person knows the order of the steps?</p>
     <p class="lede lede--answer">Heuron builds the software that replaces it — at a <strong>fixed price, agreed before I start</strong>. One person, thirty years, and no surprises on the invoice.</p>
@@ -256,13 +258,15 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
 
   <div class="wrap">
     <div class="strip">
-      <span><b>Who I work with</b></span>
-      <span>Accounting &amp; advisory</span>
-      <span>Law firms</span>
-      <span>Wealth management</span>
-      <span>Insurance agencies</span>
-      <span>Creative &amp; marketing agencies</span>
-      <span>10–60 people</span>
+      <p class="strip__label">Who I work with</p>
+      <div class="strip__list">
+        <span>Accounting &amp; advisory</span>
+        <span>Law firms</span>
+        <span>Wealth management</span>
+        <span>Insurance agencies</span>
+        <span>Creative &amp; marketing agencies</span>
+        <span>10–60 people</span>
+      </div>
     </div>
   </div>
 
@@ -346,7 +350,7 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
       <div class="step">
         <h3>Then you run it, or I do</h3>
         <div>
-          <p>Either way, you already own it. The source lives in your GitHub organisation and the infrastructure in your cloud subscription from the first week — not handed over at the end, but yours while the work is happening.</p>
+          <p>Either way, you already own it. The source lives in your own source repositories and the infrastructure in your cloud subscription from the first week — not handed over at the end, but yours while the work is happening.</p>
           <p>So hosting is a convenience you buy, not a dependency you acquire. There's no version of this where you're stuck with me, and that's in the contract rather than promised on a website.</p>
         </div>
       </div>
@@ -413,11 +417,11 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
     <p class="sec__eyebrow">The questions you're too polite to ask</p>
     <h2>How does one person do this — and what happens if I get hit by a <em>bus</em>?</h2>
     <div class="prose">
-      <p>The first is about capability. A system like this once meant four developers and most of a year; it now takes weeks, because I've spent two years building the tooling that makes it possible — infrastructure that runs AI coding agents at volume behind enforced test, review, and merge gates, so work moves fast without anyone losing track of what changed or why.<sup>1</sup> That's what lets a one-person practice quote a fixed price and mean it.</p>
+      <p>The first is about capability. A system like this once meant four developers and most of a year; it now takes weeks, because I've spent the past six months building the tooling that makes it possible — infrastructure that runs AI coding agents at volume behind enforced test, review, and merge gates, so work moves fast without anyone losing track of what changed or why.<sup>1</sup> That's what lets a one-person practice quote a fixed price and mean it.</p>
       <p>What the tooling can't do is decide what to build, notice the requirement nobody thought to mention, or take responsibility when something turns out to be wrong. That part is still a person, and here it's <strong>the same person throughout</strong> — in discovery, during the build, and on the phone eighteen months later.</p>
       <p>The second question is the fair one, and most people are too polite to ask it out loud. The answer is structural rather than reassuring.</p>
       <p class="pull">You own everything from the first week. Not at handover — from the start.</p>
-      <p>The source sits in your own GitHub organisation. The infrastructure sits in your own cloud subscription. The tests, the deployment automation, the documentation, the keys — all in your possession while the work is still going on. So the worst case isn't that your system dies with me. It's that you hire someone to pick up a documented, tested, running codebase — and that is an ordinary thing to hire for.</p>
+      <p>The source sits in your own source repositories. The infrastructure sits in your own cloud subscription. The tests, the deployment automation, the documentation, the keys — all in your possession while the work is still going on. So the worst case isn't that your system dies with me. It's that you hire someone to pick up a documented, tested, running codebase — and that is an ordinary thing to hire for.</p>
       <p>Compare that honestly to the alternative. An agency's continuity is a promise about staffing — and when their senior engineer leaves, which happens, you find that nobody remaining understands your system either, and you hold no source, no deployment, and no leverage. Mine is a promise about what is already sitting in your accounts.</p>
     </div>
   </section>
