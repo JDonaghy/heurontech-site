@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Built It And It Works — Heuron Technology</title>
+<meta name="description" content="A one-week, fixed-price code read for founders who built something with AI and hit the wall between working and production-ready.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://heurontech.com/shipping/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heuron Technology">
+<meta property="og:title" content="You built it and it works. Shipping it is a different job.">
+<meta property="og:description" content="A one-week, fixed-price code read for founders who built something with AI and hit the wall between working and production-ready.">
+<meta property="og:url" content="https://heurontech.com/shipping/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8F6; --card:#FFFFFF; --ink:#12181A; --ink-2:#464E50;
+  --muted:#7A8285; --rule:#E2DCD8; --rule-strong:#C4BCB6;
+  --green:#0B3036; --ochre:#B37947;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --gut:clamp(20px,5vw,64px); --maxw:1140px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:2px;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut);}
+.narrow{max-width:720px;margin-inline:auto;}
+
+.masthead{border-bottom:1px solid var(--rule);}
+.masthead__in{max-width:var(--maxw);margin:0 auto;padding:18px var(--gut);
+  display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.mark{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;}
+.mark b{font-weight:600;}.mark span{font-weight:400;color:var(--ink-2);}
+.navlinks{display:flex;gap:26px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.06em;}
+.navlinks a{color:var(--ink-2);text-decoration:none;}
+.navlinks a:hover{color:var(--green);text-decoration:underline;}
+
+.top{padding:clamp(52px,8vw,96px) 0 clamp(34px,4vw,52px);}
+.eyebrow{font-family:var(--sans);font-weight:500;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ochre);margin:0 0 24px;}
+.top h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5.6vw,3.7rem);
+  line-height:1.08;letter-spacing:-.018em;margin:0;max-width:19ch;}
+.top h1 em{font-style:italic;color:var(--ochre);}
+.dbl{border:0;margin:32px 0 0;max-width:300px;height:4px;
+  border-top:1.5px solid var(--green);border-bottom:1.5px solid var(--green);}
+
+.body{padding:clamp(34px,5vw,56px) 0 0;}
+.tag{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--muted);
+  margin:clamp(40px,5vw,60px) 0 6px;}
+.tag:first-child{margin-top:0;}
+.body h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.42rem,3vw,1.92rem);
+  line-height:1.24;letter-spacing:-.012em;margin:0 0 18px;max-width:26ch;}
+.body p{margin:0 0 19px;color:var(--ink-2);}
+.body p:last-child{margin-bottom:0;}
+.body strong{color:var(--ink);font-weight:600;}
+.lead{font-size:1.15rem;color:var(--ink) !important;line-height:1.6;}
+
+.pull{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.46rem);line-height:1.42;
+  color:var(--ink);border-left:2px solid var(--ochre);padding-left:22px;margin:28px 0;}
+
+.checklist{list-style:none;margin:0 0 22px;padding:0;border-top:1px solid var(--rule);}
+.checklist li{border-bottom:1px solid var(--rule);padding:13px 0 13px 30px;position:relative;
+  color:var(--ink-2);font-size:.98rem;}
+.checklist li::before{content:"";position:absolute;left:2px;top:20px;width:7px;height:7px;
+  border-radius:50%;background:var(--ochre);}
+
+.deliverables{list-style:none;margin:0 0 22px;padding:0;}
+.deliverables li{padding:9px 0 9px 22px;position:relative;color:var(--ink-2);}
+.deliverables li::before{content:"—";position:absolute;left:0;color:var(--rule-strong);}
+
+.endings{border-top:1px solid var(--ink);margin:26px 0 0;}
+.endings div{border-bottom:1px solid var(--rule);padding:18px 0;color:var(--ink-2);}
+.endings div:last-child{border-bottom:0;}
+.endings strong{color:var(--ink);font-weight:600;}
+
+.aside{font-size:.94rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:18px;margin-top:8px;}
+
+.actions{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-top:32px;}
+.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;
+  font-family:var(--sans);font-weight:500;font-size:13.5px;letter-spacing:.05em;padding:14px 26px;
+  border-radius:2px;transition:background .15s ease;}
+.btn:hover{background:#1F4335;}
+.btn-quiet{font-family:var(--sans);font-weight:500;font-size:13.5px;letter-spacing:.05em;color:var(--ink-2);
+  text-decoration:none;border-bottom:1px solid var(--rule-strong);padding-bottom:2px;}
+.btn-quiet:hover{color:var(--green);border-color:var(--green);}
+
+.wedge{display:block;width:100%;height:clamp(70px,9vw,150px);margin-bottom:-1px;}
+.wedge path{fill:var(--green);}
+.closing{background:var(--green);color:#fff;padding:clamp(40px,5vw,66px) 0 clamp(40px,5vw,66px);border:0;margin:0;}
+.closing h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.85rem,4.4vw,2.6rem);
+  line-height:1.16;margin:0;color:#fff;max-width:20ch;}
+.closing p{max-width:56ch;color:#CBD6D6;margin:20px 0 0;}
+.closing .btn{background:#fff;color:var(--green);}
+.closing .btn:hover{background:#E8EFEE;}
+.closing .btn-quiet{color:#CBD6D6;border-color:rgba(255,255,255,.32);}
+.closing .btn-quiet:hover{color:var(--ochre);border-color:var(--ochre);}
+.tagline{margin:clamp(36px,5vw,58px) 0 0;}
+.tagline p{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.5rem);
+  line-height:1.32;color:#fff;margin:0;}
+.tagline hr{border:0;border-top:1.5px solid var(--ochre);width:96px;margin:16px 0 0;}
+.foot{border-top:1px solid rgba(255,255,255,.16);color:#9DAFAF;margin-top:clamp(36px,5vw,58px);
+  padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--sans);font-weight:500;font-size:11.5px;letter-spacing:.06em;}
+.foot a{color:#9DAFAF;text-decoration:none;}
+.foot a:hover{color:var(--ochre);text-decoration:underline;}
+
+@media (max-width:700px){
+  body{font-size:16.5px;}
+  .navlinks{gap:18px;}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__in">
+    <a class="mark" href="/"><b>Heuron</b> <span>Technology</span></a>
+    <nav class="navlinks">
+      <a href="/about/">About</a>
+      <a href="/blog/">Writing</a>
+      <a href="https://intake.heurontech.com/start">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="top narrow">
+    <p class="eyebrow">For people who built something with AI</p>
+    <h1>You built it and it works. <em>Shipping it is a different job.</em></h1>
+    <hr class="dbl">
+  </section>
+
+  <section class="body narrow">
+
+    <p class="lead">Maybe it runs on your laptop and nowhere else. Maybe it's live, and you've stopped touching it because the last change broke two things you didn't know were connected. Maybe a customer asked where their data is stored and you realized you didn't have an answer you'd want to say out loud.</p>
+
+    <p>You're not stuck because you did it wrong. You're stuck at the exact place everyone gets stuck, for a reason that has very little to do with how good you are.</p>
+
+    <p class="tag">Worth saying first</p>
+    <h2>What you actually did</h2>
+
+    <p>Most software projects fail before anyone writes a line of code, because nobody could say precisely what the thing was supposed to do. Specifications get written by people who don't do the work, for people who don't understand the work, and the result satisfies neither.</p>
+
+    <p>You skipped that failure mode entirely. You knew what it should do, and you proved it by making it do that. Whatever state the code is in, the hardest question in the project — <em>what are we building</em> — is answered, and it's answered in a form I can run.</p>
+
+    <p>That isn't a consolation prize. That's most of the risk, gone.</p>
+
+    <p class="tag">The part nobody warns you about</p>
+    <h2>Why it stalled</h2>
+
+    <p>AI coding tools are extraordinary at the work that shows up on a screen. A page, a form, a chart, the flow between them — work that used to take weeks now takes an afternoon, and it is genuinely as good as it looks.</p>
+
+    <p>Then there's the other kind of work: the kind with no visible output at all. Nobody demos a database constraint. There's no screenshot of a migration that didn't lose anyone's data, or of an alert that fired at three in the morning before a customer noticed. That work is invisible, so it doesn't get asked for, so it doesn't get built.</p>
+
+    <p>It's also the entire difference between something that works and something that keeps working.</p>
+
+    <p class="tag">So you can find yourself on it</p>
+    <h2>Roughly, this is the list</h2>
+
+    <ul class="checklist">
+      <li>A second user — separate data, separate sessions, and no way to read someone else's records by changing a number in the URL</li>
+      <li>Credentials that don't live in the source code</li>
+      <li>A schema you can change without losing what's already in it</li>
+      <li>Data that survives someone doing something you didn't anticipate</li>
+      <li>A deploy that doesn't require you to be awake, and a way back when it goes wrong</li>
+      <li>Knowing it broke before your customer tells you</li>
+      <li>Errors that fail into something safe rather than a stack trace</li>
+      <li>A backup you have actually restored from at least once</li>
+      <li>Enough test coverage that you can change it in six months without flinching</li>
+      <li>An answer to the security questionnaire your first serious customer will send</li>
+    </ul>
+
+    <p>If two or three of those are unresolved, that's ordinary. If most of them are, that's also ordinary — and it's the real reason the thing hasn't moved in a month.</p>
+
+    <p class="tag">Before you assume otherwise</p>
+    <h2>I write my code the same way you do</h2>
+
+    <p>Most of the code I ship is written by AI agents. I'm not the craftsman who's going to tell you that you cheated, because I'd be telling on myself.</p>
+
+    <p>The difference isn't restraint. It's what surrounds the agents: a pipeline where work is planned, built, tested, and then reviewed by something that didn't write it, where nothing merges without passing gates that don't negotiate. I spent six months building that. It's <a href="https://github.com/JDonaghy/code-coordinator">open source and you're welcome to read it</a>, and the reasoning behind it is <a href="/blog/the-part-that-can-say-no/">written up on the blog</a>.</p>
+
+    <p>So when I look at what you built, I'm not evaluating your character. I'm looking for the gates that weren't there.</p>
+
+    <p class="tag">I've done this twice</p>
+    <h2>Belfast, 1998. Then again in 2014.</h2>
+
+    <p>Two people in Belfast handed me a product one of them had written. Neither of them was an engineer. They had customers in the London financial markets and a piece of software that wasn't going to survive them.</p>
+
+    <p>I kept what worked, replaced what didn't, and never once told them they'd done it wrong. That product became the foundation of the company, and the company sold in 2008.</p>
+
+    <p>Sixteen years after we met, one of those two founders started another company with me. He turned up with a market data reporting tool he'd built himself, in Microsoft Access. My job was to make it real — Angular front end, C# API, a clustered database, the whole thing running in Azure — and the instruction I gave myself was to recreate what he'd built as faithfully as I could.</p>
+
+    <p>He wasn't an engineer. But he was right about the product, and his prototype was the specification. Rebuilding it <em>properly</em> and quietly losing what he'd worked out would have been the expensive mistake, not the clever one. That company sold in 2019.</p>
+
+    <p class="pull">Twice now, someone who wasn't an engineer has handed me a working thing that told me exactly what to build. Both times it became a company that sold.</p>
+
+    <p>I know what the first conversation feels like from your chair.</p>
+
+    <p class="tag">What I'd do first</p>
+    <h2>Read it</h2>
+
+    <p>One week. $2,500, fixed. At the end you have a document that says:</p>
+
+    <ul class="deliverables">
+      <li>What's actually in there, in plain language</li>
+      <li>What's worth keeping and what should be replaced — with the reason, not just the verdict</li>
+      <li>Everything standing between it and production, ordered by what will hurt you first</li>
+      <li>What it would cost me to do it</li>
+      <li>What you could reasonably do yourself</li>
+    </ul>
+
+    <p>You own that document. Take it to anyone.</p>
+
+    <p>I don't quote a build before I've read the code, and neither should anyone else. A fixed price on a codebase nobody has opened isn't confidence. It's a guess with a number on it.</p>
+
+    <h3 class="tag" style="margin-top:36px">Three ways this ends</h3>
+
+    <div class="endings">
+      <div><strong>You do it yourself.</strong> Sometimes the list is shorter than it feels from the inside, and what you needed was someone to put it in order. Take the document and go.</div>
+      <div><strong>I do it.</strong> Priced from that document, fixed, agreed in writing before I start. If it takes twice as long as I expected, the price doesn't change. That risk is mine.</div>
+      <div><strong>You don't do it.</strong> Occasionally the honest answer is that rebuilding costs more than the thing is currently worth, or that it should wait until someone is actually waiting to pay for it. I'd rather tell you that in week one than in month four.</div>
+    </div>
+
+    <p class="tag" style="margin-top:44px">Being straight with you</p>
+    <h2>Who this doesn't work for</h2>
+
+    <p>This works when there's a business on the other side — customers waiting, revenue arriving, funding in the bank, or a job that depends on the thing existing. Hardening is expensive precisely because it's insurance, and insurance is only rational when there's something to insure.</p>
+
+    <p>If you built something you're excited about and nobody has asked for it yet, a week of my time will tell you things you can't act on. Keep building. Come back when someone's waiting.</p>
+
+    <p>And one thing, to save us both an awkward call: I take fixed-price engagements. I'm not looking to join anything as a technical co-founder, however good the idea is.</p>
+
+    <p class="aside">This is a narrower door into the same practice I run for professional services firms — same contract, same fixed prices, same person throughout. It exists because this problem keeps arriving.</p>
+
+  </section>
+
+</main>
+
+<svg class="wedge" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0,150 L0,150 L77.6,146.5 L177.2,141.8 L276.9,137.7 L376.6,133 L476.3,128 L575.9,123.6 L675.7,117.2 L775.3,103.4 L875.1,87.9 L974.7,72.4 L1074.5,56.8 L1174.1,41.9 L1273.8,25.8 L1373.5,10 L1440,0 L1440,150 Z"/></svg>
+
+<footer class="closing"><div class="wrap"><div class="narrow">
+    <h2>Tell me what you've got.</h2>
+    <p>Plain language is fine. What it does, roughly how it got built, and what happened when you tried to put it in front of someone. No account, no login, no call to book. A person reads every one of these, and that person is me. You'll hear back, usually inside a day.</p>
+    <div class="actions">
+      <a class="btn" href="https://intake.heurontech.com/start">Tell me what you've got &nbsp;&rarr;</a>
+      <a class="btn-quiet" href="mailto:jdonaghy@heurontech.com">Or just email me</a>
+    </div>
+    <div class="tagline"><p>Intelligent software.<br>Real-world results.</p><hr></div>
+    <div class="foot">
+    <span>© 2026 Heuron Technology · Minneapolis, MN</span>
+    <span>
+      <a href="mailto:jdonaghy@heurontech.com">jdonaghy@heurontech.com</a> &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/johnfdonaghy/">LinkedIn ↗</a>
+    </span>
+    </div>
+  </div></div>
+</footer>
+
+</body>
+</html>
