@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>You Built It And It Works — Heuron Technology</title>
+<title>If You Built It And It Works, Mostly… — Heuron Technology</title>
 <meta name="description" content="A one-week, fixed-price code read for founders who built something with AI and hit the wall between working and production-ready.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://heurontech.com/shipping/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Heuron Technology">
-<meta property="og:title" content="You built it and it works. Shipping it is a different job.">
+<meta property="og:title" content="If you built it and it works, mostly…">
 <meta property="og:description" content="A one-week, fixed-price code read for founders who built something with AI and hit the wall between working and production-ready.">
 <meta property="og:url" content="https://heurontech.com/shipping/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,9 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
   margin:clamp(40px,5vw,60px) 0 6px;}
 .tag:first-child{margin-top:0;}
 .body h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.42rem,3vw,1.92rem);
-  line-height:1.24;letter-spacing:-.012em;margin:0 0 18px;max-width:26ch;}
+  line-height:1.24;letter-spacing:-.012em;margin:clamp(40px,5vw,60px) 0 18px;max-width:26ch;}
+.body h2:first-child{margin-top:0;}
+.body .tag + h2{margin-top:0;}
 .body p{margin:0 0 19px;color:var(--ink-2);}
 .body p:last-child{margin-bottom:0;}
 .body strong{color:var(--ink);font-weight:600;}
@@ -137,39 +139,30 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
 
   <section class="top narrow">
     <p class="eyebrow">For people who built something with AI</p>
-    <h1>You built it and it works. <em>Shipping it is a different job.</em></h1>
+    <h1>If you built it and it works, <em>mostly&hellip;</em></h1>
     <hr class="dbl">
   </section>
 
   <section class="body narrow">
 
-    <p class="lead">Maybe it runs on your laptop and nowhere else. Maybe it's live, and you've stopped touching it because the last change broke two things you didn't know were connected. Maybe a customer asked where their data is stored and you realized you didn't have an answer you'd want to say out loud.</p>
+    <p class="lead">If you built a working app but you're not sure how to get it into production, or make it solid enough to build a business on, I can help with that. I've done it twice in the past for successful startups. Once as a co-founder of a company that I helped build to successful exit in 5 years. This was before vibe-coding existed, but the concept is the same. I helped turn prototypes into successful production systems that were deployed at some of the largest investment banks on the planet.</p>
 
-    <p>You're not stuck because you did it wrong. You're stuck at the exact place everyone gets stuck, for a reason that has very little to do with how good you are.</p>
+    <h2>What a working prototype gets you</h2>
 
-    <p class="tag">Worth saying first</p>
-    <h2>What you actually did</h2>
+    <p>Some projects get into trouble before anyone writes a line of code, because nobody had a clear vision of what the application was supposed to do. The specifications are written by people who don't do the work, for people who don't understand the work, and the result satisfies neither.</p>
 
-    <p>Most software projects fail before anyone writes a line of code, because nobody could say precisely what the thing was supposed to do. Specifications get written by people who don't do the work, for people who don't understand the work, and the result satisfies neither.</p>
+    <p>If you had a vision and created a working version, you've already navigated that obstacle. You knew what your application should do, and you proved it by making it do it. Whatever state the code is in, the most important question in the project &mdash; <em>what are we building</em> &mdash; is answered, and in a way I can work with.</p>
 
-    <p>You skipped that failure mode entirely. You knew what it should do, and you proved it by making it do that. Whatever state the code is in, the hardest question in the project — <em>what are we building</em> — is answered, and it's answered in a form I can run.</p>
+    <h2>What challenges might lie ahead</h2>
 
-    <p>That isn't a consolation prize. That's most of the risk, gone.</p>
+    <p>AI coding tools are extremely good at creating the first version of an app. A page, a form, a chart, the flow between them &mdash; work that used to take weeks now takes a day, and it is genuinely as good as it looks.</p>
 
-    <p class="tag">The part nobody warns you about</p>
-    <h2>Why it stalled</h2>
+    <p>But there's the other kind of work with no visible output at all. Nobody demos a database constraint. There's no screenshot of a migration that didn't lose anyone's data, or of an alert that fired at three in the morning before a customer noticed. That work is invisible, so it doesn't get asked for, so it often doesn't get built.</p>
 
-    <p>AI coding tools are extraordinary at the work that shows up on a screen. A page, a form, a chart, the flow between them — work that used to take weeks now takes an afternoon, and it is genuinely as good as it looks.</p>
-
-    <p>Then there's the other kind of work: the kind with no visible output at all. Nobody demos a database constraint. There's no screenshot of a migration that didn't lose anyone's data, or of an alert that fired at three in the morning before a customer noticed. That work is invisible, so it doesn't get asked for, so it doesn't get built.</p>
-
-    <p>It's also the entire difference between something that works and something that keeps working.</p>
-
-    <p class="tag">So you can find yourself on it</p>
-    <h2>Roughly, this is the list</h2>
+    <p>It's also the difference between a working prototype and a production system that can pass a security audit.</p>
 
     <ul class="checklist">
-      <li>A second user — separate data, separate sessions, and no way to read someone else's records by changing a number in the URL</li>
+      <li>Multiple users &mdash; separate data, separate sessions, and no way to read someone else's records by changing a number in the URL</li>
       <li>Credentials that don't live in the source code</li>
       <li>A schema you can change without losing what's already in it</li>
       <li>Data that survives someone doing something you didn't anticipate</li>
@@ -181,40 +174,27 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
       <li>An answer to the security questionnaire your first serious customer will send</li>
     </ul>
 
-    <p>If two or three of those are unresolved, that's ordinary. If most of them are, that's also ordinary — and it's the real reason the thing hasn't moved in a month.</p>
+    <p>If any of this sounds like you, you're not alone.</p>
 
-    <p class="tag">Before you assume otherwise</p>
-    <h2>I write my code the same way you do</h2>
+    <h2>UK, 1998. USA, 2014. A bit more on my background</h2>
 
-    <p>Most of the code I ship is written by AI agents. I'm not the craftsman who's going to tell you that you cheated, because I'd be telling on myself.</p>
+    <p>Two people in London handed me a product one of them had written. Neither of them was an engineer. They had a great idea, potential customers in the London financial markets, and a prototype that was generating significant interest. But they knew they needed a dedicated engineer to turn it into a real product. That person was me, and I stuck with them for ten years even after I moved across the Atlantic Ocean in 2001.</p>
 
-    <p>The difference isn't restraint. It's what surrounds the agents: a pipeline where work is planned, built, tested, and then reviewed by something that didn't write it, where nothing merges without passing gates that don't negotiate. I spent six months building that. It's <a href="https://github.com/JDonaghy/code-coordinator">open source and you're welcome to read it</a>, and the reasoning behind it is <a href="/blog/the-part-that-can-say-no/">written up on the blog</a>.</p>
+    <p>I gained their trust because I kept what worked, replaced what didn't, and never told them they'd done it wrong. That product became the foundation of the company that they sold in 2008 for a significant amount of money. They never had to work again but they both did anyway.</p>
 
-    <p>So when I look at what you built, I'm not evaluating your character. I'm looking for the gates that weren't there.</p>
+    <p>Six years later, one of those two founders started another company with me. A third co-founder had a market data reporting tool he'd built himself, in Microsoft Access. My job was to make it real &mdash; Angular front end, C# API, a clustered database, the whole thing running in Azure &mdash; and my instinct was to recreate what he'd built as faithfully as I could.</p>
 
-    <p class="tag">I've done this twice</p>
-    <h2>Belfast, 1998. Then again in 2014.</h2>
+    <p>He wasn't an engineer. But he was right about the product, and his prototype was the specification. Rebuilding it <em>properly</em> and quietly losing what he'd worked out would have been an expensive mistake that could've doomed the relationship. Instead the company went on to great success and sold in 2019.</p>
 
-    <p>Two people in Belfast handed me a product one of them had written. Neither of them was an engineer. They had customers in the London financial markets and a piece of software that wasn't going to survive them.</p>
+    <p class="pull">Twice now, someone who wasn't an engineer has handed me a working application that told me exactly what to build. Both times it became a company that sold.</p>
 
-    <p>I kept what worked, replaced what didn't, and never once told them they'd done it wrong. That product became the foundation of the company, and the company sold in 2008.</p>
+    <h2>First steps</h2>
 
-    <p>Sixteen years after we met, one of those two founders started another company with me. He turned up with a market data reporting tool he'd built himself, in Microsoft Access. My job was to make it real — Angular front end, C# API, a clustered database, the whole thing running in Azure — and the instruction I gave myself was to recreate what he'd built as faithfully as I could.</p>
-
-    <p>He wasn't an engineer. But he was right about the product, and his prototype was the specification. Rebuilding it <em>properly</em> and quietly losing what he'd worked out would have been the expensive mistake, not the clever one. That company sold in 2019.</p>
-
-    <p class="pull">Twice now, someone who wasn't an engineer has handed me a working thing that told me exactly what to build. Both times it became a company that sold.</p>
-
-    <p>I know what the first conversation feels like from your chair.</p>
-
-    <p class="tag">What I'd do first</p>
-    <h2>Read it</h2>
-
-    <p>One week. $2,500, fixed. At the end you have a document that says:</p>
+    <p>I spend a week reading the code and understanding your vision. $2,500, fixed. At the end you have a document that says:</p>
 
     <ul class="deliverables">
       <li>What's actually in there, in plain language</li>
-      <li>What's worth keeping and what should be replaced — with the reason, not just the verdict</li>
+      <li>What's worth keeping and what should be replaced &mdash; with the reason, not just the verdict</li>
       <li>Everything standing between it and production, ordered by what will hurt you first</li>
       <li>What it would cost me to do it</li>
       <li>What you could reasonably do yourself</li>
@@ -235,13 +215,13 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;border-radius:
     <p class="tag" style="margin-top:44px">Being straight with you</p>
     <h2>Who this doesn't work for</h2>
 
-    <p>This works when there's a business on the other side — customers waiting, revenue arriving, funding in the bank, or a job that depends on the thing existing. Hardening is expensive precisely because it's insurance, and insurance is only rational when there's something to insure.</p>
+    <p>This works when there's a business on the other side &mdash; customers waiting, revenue arriving, funding in the bank, or a job that depends on the thing existing. Hardening is expensive precisely because it's insurance, and insurance is only rational when there's something to insure.</p>
 
     <p>If you built something you're excited about and nobody has asked for it yet, a week of my time will tell you things you can't act on. Keep building. Come back when someone's waiting.</p>
 
-    <p>And one thing, to save us both an awkward call: I take fixed-price engagements. I'm not looking to join anything as a technical co-founder, however good the idea is.</p>
+    <p>And one thing to know up front: I take fixed-price engagements. I'm not looking to join anything as a technical co-founder, however good the idea is.</p>
 
-    <p class="aside">This is a narrower door into the same practice I run for professional services firms — same contract, same fixed prices, same person throughout. It exists because this problem keeps arriving.</p>
+    <p class="aside">This is a narrower door into the same practice I run for professional services firms &mdash; same contract, same fixed prices, same person throughout. It exists because this need keeps arising and I'm passionate about turning ideas into great products.</p>
 
   </section>
 
